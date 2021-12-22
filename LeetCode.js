@@ -14,6 +14,8 @@ var runningSum = function (nums) {
     return newArray;
 };
 
+
+//
 // 1108. Defanging an IP Address
 // Given a valid (IPv4) IP address, return a defanged version of that IP address.
 // A defanged IP address replaces every period "." with "[.]".
@@ -24,6 +26,8 @@ var defangIPaddr = function (address) {
     return address.replace(/\./g, "[.]");
 };
 
+
+//
 // 2011. Final Value of Variable After Performing Operations
 // ++X and X++ increments the value of the variable X by 1.
 // --X and X-- decrements the value of the variable X by 1.
@@ -45,6 +49,8 @@ var finalValueAfterOperations = function (operations) {
     return result;
 };
 
+
+//
 // 1672. Richest Customer Wealth
 // You are given an m x n integer grid accounts where accounts[i][j] is the amount of money the i​​​​​​​​​​​th​​​​ customer has in the j​​​​​​​​​​​th​​​​ bank. Return the wealth that the richest customer has.
 // A customer's wealth is the amount of money they have in all their bank accounts. The richest customer is the customer that has the maximum wealth.
@@ -68,6 +74,8 @@ var maximumWealth = function (accounts) {
     return maxsum;
 };
 
+
+//
 // 1470. Shuffle the Array
 // Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
 // Return the array in the form [x1,y1,x2,y2,...,xn,yn].
@@ -83,3 +91,67 @@ var shuffle = function (nums, n) {
     }
     return arr;
 };
+
+
+//
+// 1431. Kids With the Greatest Number of Candies
+// There are n kids with candies. You are given an integer array candies, where each candies[i] represents the number of candies the ith kid has, and an integer extraCandies, denoting the number of extra candies that you have.
+
+// Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies, they will have the greatest number of candies among all the kids, or false otherwise.
+
+// Note that multiple kids can have the greatest number of candies.
+// Input: candies = [2,3,5,1,3], extraCandies = 3
+// Output: [true,true,true,false,true]
+
+// Псевдокод:
+// Найдем максимальное число конфет в массиве candies.
+// От максимального отнимаем extraCandies.
+// Проходим по массиву и смотрим если наш элемент плюс extraCandies >= maxCandies
+// Все числа что ниже maxCandies - false. Остальные - true.
+
+// Отличное решение по сложности
+
+var kidsWithCandies = function (candies, extraCandies) {
+    let maxCandies = Math.max(...candies);
+    return candies.map((item) => item + extraCandies >= maxCandies);
+};
+
+
+//
+// 771. Jewels and Stones
+// You're given strings jewels representing the types of stones that are jewels, and stones representing the stones you have. Each character in stones is a type of stone you have. You want to know how many of the stones you have are also jewels.
+
+// Letters are case sensitive, so "a" is considered a different type of stone from "A".
+// Input: jewels = "aA", stones = "aAAbbbb"
+// Output: 3
+
+// Псевдокод:
+// Разбиваю jewels и stones на массивы со значениями
+// Через двойной цикл сравниваю значения двух массивов
+
+// Плохое решение по сложности
+
+var numJewelsInStones = function (jewels, stones) {
+    let jew = jewels.split("");
+    let sto = stones.split("");
+    let counter = 0;
+    for (let i = 0; i < jew.length; i++) {
+        for (let j = 0; j < sto.length; j++) {
+            if (jew[i] === sto[j]) {
+                counter++;
+            }
+        }
+    }
+    return counter;
+};
+// Рефакторинг решения
+var numJewelsInStones = function (jewels, stones) {
+    let counter = 0;
+    for (let i = 0; i < stones.length; i++) {
+        if (jewels.includes(stones[i])) {
+            counter += 1;
+        }
+    }
+    return counter;
+};
+
