@@ -14,7 +14,6 @@ var runningSum = function (nums) {
     return newArray;
 };
 
-
 //
 // 1108. Defanging an IP Address
 // Given a valid (IPv4) IP address, return a defanged version of that IP address.
@@ -25,7 +24,6 @@ var runningSum = function (nums) {
 var defangIPaddr = function (address) {
     return address.replace(/\./g, "[.]");
 };
-
 
 //
 // 2011. Final Value of Variable After Performing Operations
@@ -48,7 +46,6 @@ var finalValueAfterOperations = function (operations) {
     }
     return result;
 };
-
 
 //
 // 1672. Richest Customer Wealth
@@ -74,7 +71,6 @@ var maximumWealth = function (accounts) {
     return maxsum;
 };
 
-
 //
 // 1470. Shuffle the Array
 // Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
@@ -91,7 +87,6 @@ var shuffle = function (nums, n) {
     }
     return arr;
 };
-
 
 //
 // 1431. Kids With the Greatest Number of Candies
@@ -115,7 +110,6 @@ var kidsWithCandies = function (candies, extraCandies) {
     let maxCandies = Math.max(...candies);
     return candies.map((item) => item + extraCandies >= maxCandies);
 };
-
 
 //
 // 771. Jewels and Stones
@@ -155,3 +149,26 @@ var numJewelsInStones = function (jewels, stones) {
     return counter;
 };
 
+// 1365. How Many Numbers Are Smaller Than the Current Number
+// Given the array nums, for each nums[i] find out how many numbers in the array are smaller than it. That is, for each nums[i] you have to count the number of valid j's such that j != i and nums[j] < nums[i].
+
+// Return the answer in an array.
+// Input: nums = [8,1,2,2,3]
+// Output: [4,0,1,1,3]
+
+// Псевдокод: Создал новый массив куда пушу значние result () которое я получаю проходясь по массиву два раза и сравнивая два значения
+
+// Плохое решение по сложности(On2) Можно решить длинне но лучше по сложности
+var smallerNumbersThanCurrent = function (nums) {
+    let array = [];
+    for (let i = 0; i < nums.length; i++) {
+        let result = 0;
+        for (let j = 0; j < nums.length; j++) {
+            if (nums[i] > nums[j]) {
+                result++;
+            }
+        }
+        array.push(result);
+    }
+    return array;
+};
